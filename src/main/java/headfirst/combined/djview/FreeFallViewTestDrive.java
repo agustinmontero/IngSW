@@ -5,7 +5,7 @@ public class FreeFallViewTestDrive {
      
  public static void main(String[] args) {
 FreeFallView ventana =new FreeFallView();
-ventana.CreateView();
+ventana.createView();
 
     
 }

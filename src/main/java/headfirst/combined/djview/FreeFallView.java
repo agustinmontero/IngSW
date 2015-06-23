@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class FreeFallView extends JFrame {
+public class FreeFallView extends JFrame implements ViewInterface{
 
     JFrame viewFrame;
     JPanel viewPanel;
@@ -19,7 +19,8 @@ public class FreeFallView extends JFrame {
 
     }
 
-    public void CreateView() {
+    @Override
+    public void createView() {
 
         viewPanel = new JPanel(new GridLayout(1, 2));
         viewFrame = new JFrame("FreeFall Simulator");
@@ -71,6 +72,41 @@ public class FreeFallView extends JFrame {
         viewPanel.add(new JPanel ());
         
         
+    }
+
+    @Override
+    public void createControls() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateBPM() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateBeat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void enableStopMenuItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void disableStopMenuItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void enableStartMenuItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void disableStartMenuItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
