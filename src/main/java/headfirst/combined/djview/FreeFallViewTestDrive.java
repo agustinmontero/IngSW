@@ -1,10 +1,10 @@
 package main.java.headfirst.combined.djview;
 
-public class GraphicsInterfaceTestDrive {
+public class FreeFallViewTestDrive {
     
      
  public static void main(String[] args) {
-GraphicsInterface ventana =new GraphicsInterface();
+FreeFallView ventana =new FreeFallView();
 ventana.CreateView();
 
     

@@ -6,7 +6,7 @@ import javax.swing.text.View;
 public class FreeFallController implements ControllerInterface{
     
     FreeFallModelInterface model;
-    DJView view;
+    ViewInterface view;
 
     public FreeFallController(FreeFallModelInterface model) {
         this.model = model;        
@@ -16,6 +16,13 @@ public class FreeFallController implements ControllerInterface{
         view.disableStopMenuItem();
         view.enableStartMenuItem();
     }
+
+    public FreeFallController(FreeFallModelInterface model, ViewInterface view) {
+        this.model = model;
+        this.view = view;
+    }
+    
+    
     
     
 

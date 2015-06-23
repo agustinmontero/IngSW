@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class GraphicsInterface extends JFrame {
+public class FreeFallView extends JFrame {
 
     JFrame viewFrame;
     JPanel viewPanel;
@@ -15,7 +15,7 @@ public class GraphicsInterface extends JFrame {
     JMenuItem StarMenuItem;
     JMenuItem StopMenuItem;
 
-    public GraphicsInterface() {
+    public FreeFallView() {
 
     }
 

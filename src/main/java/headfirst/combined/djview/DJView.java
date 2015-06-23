@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class DJView implements ActionListener,  BeatObserver, BPMObserver {
+public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewInterface {
     BeatModelInterface model;
     ControllerInterface controller;
     JFrame viewFrame;
@@ -58,6 +58,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 	}
   
   
+    @Override
     public void createControls() {
 		// Create all Swing components here
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -129,22 +130,27 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         controlFrame.setVisible(true);
     }
 
+    @Override
 	public void enableStopMenuItem() {
     	stopMenuItem.setEnabled(true);
 	}
 
+    @Override
 	public void disableStopMenuItem() {
     	stopMenuItem.setEnabled(false);
 	}
 
+    @Override
 	public void enableStartMenuItem() {
     	startMenuItem.setEnabled(true);
 	}
 
+    @Override
 	public void disableStartMenuItem() {
     	startMenuItem.setEnabled(false);
 	}
 
+    @Override
     public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == setBPMButton) {
 			int bpm = Integer.parseInt(bpmTextField.getText());
@@ -156,6 +162,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 		}
     }
 
+    @Override
 	public void updateBPM() {
 		if (model != null) {
 			int bpm = model.getBPM();
@@ -171,6 +178,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 		}
 	}
   
+    @Override
 	public void updateBeat() {
 		if (beatBar != null) {
 			 beatBar.setValue(100);
