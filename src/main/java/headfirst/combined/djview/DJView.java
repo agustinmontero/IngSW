@@ -7,6 +7,7 @@ import javax.swing.*;
 public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewInterface {
     BeatModelInterface model;
     ControllerInterface controller;
+    
     JFrame viewFrame;
     JPanel viewPanel;
     BeatBar beatBar;
@@ -23,25 +24,21 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
     JMenuItem startMenuItem;
     JMenuItem stopMenuItem;
     
-    String[] modelList;
-    JComboBox modelOption;
     
 
     public DJView(ControllerInterface controller, BeatModelInterface model) {	
                 this.controller = controller;
 		this.model = model;
-		model.registerObserver((BeatObserver)this);
-		model.registerObserver((BPMObserver)this);
-                this.modelList = new String[]{"HeartModel", "DJModel", "FreeFallModel"};
-                this.modelOption = new JComboBox(modelList);
-                modelOption.addActionListener(this);
+		this.model.registerObserver((BeatObserver)this);
+		this.model.registerObserver((BPMObserver)this);
+                
     }
     
     public void createView() {
 		// Create all Swing components here
         viewPanel = new JPanel(new GridLayout(1, 2));
         viewFrame = new JFrame("View");
-        viewFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        viewFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         viewFrame.setSize(new Dimension(100, 80));
         bpmOutputLabel = new JLabel("offline", SwingConstants.CENTER);
 		beatBar = new BeatBar();
@@ -49,8 +46,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
         JPanel bpmPanel = new JPanel(new GridLayout(3, 1));
 		bpmPanel.add(beatBar);
         bpmPanel.add(bpmOutputLabel);
-        // DROP BOX DOWN?        
-        bpmPanel.add(modelOption);
+        
         viewPanel.add(bpmPanel);
         viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
         viewFrame.pack();
@@ -64,7 +60,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
         JFrame.setDefaultLookAndFeelDecorated(true);
         
         controlFrame = new JFrame("Control");
-        controlFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        controlFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         controlFrame.setSize(new Dimension(100, 80));
 
         controlPanel = new JPanel(new GridLayout(1, 2));

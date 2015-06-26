@@ -4,10 +4,8 @@ public class FreeFallViewTestDrive {
     
      
  public static void main(String[] args) {
-FreeFallView ventana =new FreeFallView();
-ventana.createView();
-
-    
+    FreeFallModel freeFmodel = new FreeFallModel();
+    ControllerInterface controller = new FreeFallController(freeFmodel,"FreeFallView");
 }
     
 }

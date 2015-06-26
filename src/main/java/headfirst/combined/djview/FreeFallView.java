@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class FreeFallView extends JFrame implements ViewInterface{
+public class FreeFallView extends DJView{
 
     JFrame viewFrame;
     JPanel viewPanel;
@@ -15,8 +15,8 @@ public class FreeFallView extends JFrame implements ViewInterface{
     JMenuItem StarMenuItem;
     JMenuItem StopMenuItem;
 
-    public FreeFallView() {
-
+    public FreeFallView(ControllerInterface controller, BeatModelInterface model) {
+        super(controller, model);
     }
 
     @Override
@@ -31,6 +31,12 @@ public class FreeFallView extends JFrame implements ViewInterface{
         viewFrame.setVisible(true);
         altitudeOutPutLabel = new JLabel("OFFLINE");
         //viewPanel.add(altitudeOutPutLabel);
+        
+        
+    }
+
+    @Override
+    public void createControls() {
         menubar = new JMenuBar();
         menu = new JMenu("Simulation");
         StarMenuItem = new JMenuItem("start");
@@ -42,7 +48,7 @@ public class FreeFallView extends JFrame implements ViewInterface{
         menu.add(StarMenuItem);
         menu.add(StopMenuItem);
 
-    JMenuItem exit = new JMenuItem("Quit");
+        JMenuItem exit = new JMenuItem("Quit");
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 System.exit(0);
@@ -71,12 +77,6 @@ public class FreeFallView extends JFrame implements ViewInterface{
         viewPanel.add(InsidePanel);
         viewPanel.add(new JPanel ());
         
-        
-    }
-
-    @Override
-    public void createControls() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

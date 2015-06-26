@@ -17,15 +17,25 @@ public class FreeFallController implements ControllerInterface{
         view.enableStartMenuItem();
     }
 
-    public FreeFallController(FreeFallModelInterface model, ViewInterface view) {
-        this.model = model;
-        this.view = view;
+    public FreeFallController(FreeFallModelInterface model, String viewName) {
+        if (viewName == "FreeFallView") {
+            this.model = model;
+            this.view = new FreeFallView(this, new FreeFallAdapter(model));
+            this.view.createView();
+            this.view.createControls();
+            this.view.disableStopMenuItem();
+            this.view.enableStartMenuItem();
+        }
+        else if(viewName == "DJViewAppSelector"){
+            this.model = model;
+            this.view = new DJViewAppSelector(this, new FreeFallAdapter(model));
+            this.view.createView();
+            this.view.createControls();
+            this.view.disableStopMenuItem();
+            this.view.enableStartMenuItem();
+        }
     }
     
-    
-    
-    
-
     @Override
     public void start() {
         model.on();
