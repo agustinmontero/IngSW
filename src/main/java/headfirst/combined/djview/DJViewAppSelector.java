@@ -46,20 +46,34 @@ public class DJViewAppSelector extends DJView{
         viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
         viewFrame.pack();
         viewFrame.setVisible(true);
+        modelOption.addActionListener(this);
         listenApp();
 	}
     
     private void listenApp(){
         modelOption.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == "HeartModel") {
-                    JOptionPane.showMessageDialog(null, "Do you wanna HeartModel??");
+                JComboBox cb = (JComboBox)e.getSource();
+                String modelName = (String)cb.getSelectedItem();
+                if ("HeartModel".equals(modelName)) {
+                    
                 }
                 else{}
             }
         });
+    }
+    
+    public void updateModel(BeatModelInterface model){
+        this.model.removeObserver((BeatObserver)this);
+        this.model.removeObserver((BPMObserver)this);
+        this.model = model;
+        this.model.registerObserver((BeatObserver)this);
+        this.model.registerObserver((BPMObserver)this);
+    }
+    
+    public void updateController(ControllerInterface controller){
+        this.controller = controller;
     }
     
 }

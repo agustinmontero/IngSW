@@ -5,7 +5,7 @@ public class FreeFallViewTestDrive {
      
  public static void main(String[] args) {
     FreeFallModel freeFmodel = new FreeFallModel();
-    ControllerInterface controller = new FreeFallController(freeFmodel,"FreeFallView");
+    ControllerInterface controller = new FreeFallController(freeFmodel,"DJViewAppSelector");
 }
     
 }
