@@ -18,6 +18,7 @@ public class DJViewAppSelector extends DJView{
     //Dropdown Box
     String[] modelList;
     JComboBox modelOption;
+    private final DJViewAppSelector viewAppSelector = this;
 
     public DJViewAppSelector(ControllerInterface controller, BeatModelInterface model) {
         super(controller, model);
@@ -56,10 +57,29 @@ public class DJViewAppSelector extends DJView{
             public void actionPerformed(ActionEvent e) {
                 JComboBox cb = (JComboBox)e.getSource();
                 String modelName = (String)cb.getSelectedItem();
+                ControllerInterface controllerInterface;
                 if ("HeartModel".equals(modelName)) {
+                    controller.stop();
+                    HeartAdapter heart = new HeartAdapter(HeartModel.getInstance());
+                    controllerInterface = new HeartController(heart.getModel(), viewAppSelector);
+                    updateModel(heart);
+                    updateController(controllerInterface);
                     
                 }
-                else{}
+                else if("DJModel".equals(modelName)){
+                    controller.stop();
+                    BeatModelInterface model = BeatModel.getInstance();
+                    controllerInterface = new BeatController(model, viewAppSelector);
+                    updateModel(model);
+                    updateController(controllerInterface);
+                }
+                else{
+                    controller.stop();
+                    FreeFallAdapter model = new FreeFallAdapter(new FreeFallModel());
+                    controllerInterface = new FreeFallController(model.getModel());
+                    updateModel(model);
+                    updateController(controllerInterface);
+                }
             }
         });
     }

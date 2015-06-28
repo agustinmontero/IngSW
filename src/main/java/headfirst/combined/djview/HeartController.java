@@ -2,7 +2,7 @@ package main.java.headfirst.combined.djview;
   
 public class HeartController implements ControllerInterface {
 	HeartModelInterface model;
-	DJView view;
+	ViewInterface view;
         
 	public HeartController(HeartModelInterface model) {
 		this.model = model;
@@ -12,6 +12,13 @@ public class HeartController implements ControllerInterface {
 		view.disableStopMenuItem();
 		view.disableStartMenuItem();                
 	}
+
+        public HeartController(HeartModelInterface model, ViewInterface view) {
+            this.model = model;
+            this.view = view;
+        }
+        
+        
   
 	public void start() {}
  

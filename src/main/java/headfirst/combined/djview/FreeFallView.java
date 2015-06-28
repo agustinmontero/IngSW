@@ -37,6 +37,7 @@ public class FreeFallView extends DJView{
 
     @Override
     public void createControls() {
+        JFrame.setDefaultLookAndFeelDecorated(true);
         menubar = new JMenuBar();
         menu = new JMenu("Simulation");
         StarMenuItem = new JMenuItem("start");

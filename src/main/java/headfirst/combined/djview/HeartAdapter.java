@@ -34,4 +34,8 @@ public class HeartAdapter implements BeatModelInterface {
 	public void removeObserver(BPMObserver o) {
 		heart.removeObserver(o);
 	}
+        
+        public HeartModelInterface getModel(){
+            return heart;
+        }
 }

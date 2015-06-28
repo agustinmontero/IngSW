@@ -12,7 +12,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
         private static HeartModel uniqueInstance;
         private static int tryInstance;
 
-	HeartModel() {
+	private HeartModel() {
 		thread = new Thread(this);
 		thread.start();
                 tryInstance=0;//Contador de intentos de craciones de nuevas instancias de HartModel
@@ -21,7 +21,6 @@ public class HeartModel implements HeartModelInterface, Runnable {
         //Implementacion de Singleton        
         public static HeartModel getInstance(){
             if(uniqueInstance==null){
-                System.out.println("Creando la primera instancia de HeartModel!");
                 uniqueInstance = new HeartModel();
             }
             tryInstance++;

@@ -91,7 +91,7 @@ public class ButtonAppSelector extends JPanel
 
     public void actionPerformed(ActionEvent e) {
         if ("DJ".equals(e.getActionCommand())) {
-            BeatModelInterface model1 = new BeatModel();
+            BeatModelInterface model1 = BeatModel.getInstance();
        ControllerInterface controller1 = new BeatController(model1);
         }
         else if("freeFall".equals(e.getActionCommand())){
@@ -99,7 +99,7 @@ public class ButtonAppSelector extends JPanel
             ControllerInterface controller3 = new FreeFallController(model3);
         }            
         else {
-            HeartModelInterface model2 = new HeartModel();
+            HeartModelInterface model2 = HeartModel.getInstance();
             ControllerInterface controller2 = new HeartController(model2);
         }
     }

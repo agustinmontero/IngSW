@@ -5,16 +5,29 @@ import java.util.*;
 
 public class BeatModel implements BeatModelInterface, MetaEventListener {
     Sequencer sequencer;
-	ArrayList beatObservers = new ArrayList();
-	ArrayList bpmObservers = new ArrayList();
+    ArrayList beatObservers = new ArrayList();
+    ArrayList bpmObservers = new ArrayList();
     int bpm = 90;
     Sequence sequence;
     Track track;
+    private static BeatModel uniqueInstance = null;
+
+    private BeatModel() {
+    }
+    
+    public static BeatModel getInstance(){
+        if(uniqueInstance == null){
+            uniqueInstance = new BeatModel();
+        }
+        return uniqueInstance;
+    }
+    
+    
  
-	public void initialize() {
+    public void initialize() {
         setUpMidi();
         buildTrackAndStart();
-	}
+    }
  
     public void on() {
         sequencer.start();

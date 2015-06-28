@@ -53,4 +53,8 @@ public class FreeFallAdapter implements BeatModelInterface{
         freeFall.removeObserver(o);
     }
     
+    public FreeFallModelInterface getModel(){
+        return freeFall;
+    }
+    
 }
