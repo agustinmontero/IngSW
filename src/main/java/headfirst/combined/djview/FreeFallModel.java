@@ -10,11 +10,13 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     private final int GROUND = 0;
     private final long time_interval = 400;    
     private final double GRAVITY = 9.8;
+    double seconds;
     private int altitude;
     Thread thread;
 
     public FreeFallModel() {
         this.altitude = 4000;
+        this.seconds = 0;
         this.bpmObserver = new ArrayList();
         this.beatObserver = new ArrayList();
         thread = new Thread(this);
@@ -38,7 +40,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     
     public void run() {
         
-        double seconds = 0;
+        seconds = 0;
         boolean parachute_close = true;
         int current_altitude = getAltitude();
         
@@ -98,5 +100,11 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             BPMObserver observer = (BPMObserver)bpmObserver.get(i);
             observer.updateBPM();            
         }
-    } 
+    }
+
+    public double getTime() {
+        return seconds;
+    }
+    
+    
 }

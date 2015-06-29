@@ -20,7 +20,7 @@ public class FreeFallController implements ControllerInterface{
     public FreeFallController(FreeFallModelInterface model, String viewName) {
         this.model = model;
         if ("FreeFallView".equals(viewName)) {
-            this.initalizeFFView();
+            //this.initalizeFFView();
         }
         else if("DJViewAppSelector".equals(viewName)){
             this.initalizeDJVAppSelector();
@@ -56,13 +56,13 @@ public class FreeFallController implements ControllerInterface{
         model.setAltitude(bpm);
     }
     
-    private void initalizeFFView(){
+    /*private void initalizeFFView(){
         this.view = new FreeFallView(this, new FreeFallAdapter(model));
         this.view.createView();
         this.view.createControls();
         this.view.disableStopMenuItem();
         this.view.enableStartMenuItem();
-    }
+    }*/
     
     private void initalizeDJVAppSelector(){
         this.view = new DJViewAppSelector(this, new FreeFallAdapter(model));
