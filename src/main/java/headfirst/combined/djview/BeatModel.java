@@ -10,17 +10,17 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     int bpm = 90;
     Sequence sequence;
     Track track;
-    private static BeatModel uniqueInstance = null;
+    //private static BeatModel uniqueInstance = null;
 
-    private BeatModel() {
+    public BeatModel() {
     }
     
-    public static BeatModel getInstance(){
+    /*public static BeatModel getInstance(){
         if(uniqueInstance == null){
             uniqueInstance = new BeatModel();
         }
         return uniqueInstance;
-    }
+    }*/
     
     
  

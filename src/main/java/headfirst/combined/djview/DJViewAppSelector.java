@@ -68,7 +68,7 @@ public class DJViewAppSelector extends DJView{
                 }
                 else if("DJModel".equals(modelName)){
                     controller.stop();
-                    BeatModelInterface model = BeatModel.getInstance();
+                    BeatModelInterface model = new BeatModel();
                     controllerInterface = new BeatController(model, viewAppSelector);
                     updateModel(model);
                     updateController(controllerInterface);

@@ -4,7 +4,7 @@ public class AllModelsTestDrive {
 
     
     public static void main(String[] args) {
-        BeatModelInterface model1 = BeatModel.getInstance();
+        BeatModelInterface model1 = new BeatModel();
        ControllerInterface controller1 = new BeatController(model1);
        
        HeartModelInterface model2 = HeartModel.getInstance();

@@ -91,7 +91,7 @@ public class ButtonAppSelector extends JPanel
 
     public void actionPerformed(ActionEvent e) {
         if ("DJ".equals(e.getActionCommand())) {
-            BeatModelInterface model1 = BeatModel.getInstance();
+            BeatModelInterface model1 = new BeatModel();
        ControllerInterface controller1 = new BeatController(model1);
         }
         else if("freeFall".equals(e.getActionCommand())){

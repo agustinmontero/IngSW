@@ -262,10 +262,10 @@ public class JFrameExample extends javax.swing.JFrame implements BPMObserver, Be
 				}
 			} else {
 				if (highLabel != null) {
-        			highLabel.setText("Current High: " + model.getAltitude());
+        			highLabel.setText("Current High[m]: " + model.getAltitude());
 				}
                                 if(elapsedTimeLabel != null){
-                                    elapsedTimeLabel.setText("Elapsed Time:" + model.getTime());
+                                    elapsedTimeLabel.setText("Elapsed Time[sec]: " + model.getTime());
                                 }
 			}
 		}
