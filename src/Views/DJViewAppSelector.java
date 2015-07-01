@@ -5,9 +5,9 @@ import Interfaces.ControllerInterface;
 import Controllers.FreeFallController;
 import Controllers.BeatController;
 import Controllers.HeartController;
-import models.HeartModel;
-import models.FreeFallModel;
-import models.BeatModel;
+import Models.HeartModel;
+import Models.FreeFallModel;
+import Models.BeatModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -37,7 +37,7 @@ public class DJViewAppSelector extends DJView{
         
     }
 
-    
+
     @Override
     public void createView() {
         this.modelList = new String[]{"HeartModel", "DJModel", "FreeFallModel"};
@@ -88,7 +88,7 @@ public class DJViewAppSelector extends DJView{
                 else{
                     controller.stop();
                     FreeFallAdapter model = new FreeFallAdapter(new FreeFallModel());
-                    controllerInterface = new FreeFallController(model.getModel());
+                    controllerInterface = new FreeFallController(model.getModel(), viewAppSelector);
                     updateModel(model);
                     updateController(controllerInterface);
                 }

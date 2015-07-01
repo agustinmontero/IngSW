@@ -2,7 +2,7 @@ package TestDrives;
 
 import Interfaces.ControllerInterface;
 import Controllers.FreeFallController;
-import models.FreeFallModel;
+import Models.FreeFallModel;
 
 public class FreeFallTestDrive {
 

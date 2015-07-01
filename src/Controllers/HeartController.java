@@ -5,7 +5,7 @@ import Views.DJView;
 import Adapter.HeartAdapter;
 import Interfaces.HeartModelInterface;
 import Interfaces.ViewInterface;
-import models.HeartModel;
+import Models.HeartModel;
 
 public class HeartController implements ControllerInterface {
 	HeartModelInterface model;
@@ -23,6 +23,7 @@ public class HeartController implements ControllerInterface {
         public HeartController(HeartModelInterface model, ViewInterface view) {
             this.model = model;
             this.view = view;
+            this.initalizeControls();
         }
         
         
@@ -39,6 +40,11 @@ public class HeartController implements ControllerInterface {
 	public void decreaseBPM() {}
   
  	public void setBPM(int bpm) {}
+        
+        private void initalizeControls(){
+            view.disableStopMenuItem();
+            view.disableStartMenuItem();
+        }
 }
 
 

@@ -3,7 +3,7 @@ package TestDrives;
 import Controllers.BeatController;
 import Interfaces.BeatModelInterface;
 import Interfaces.ControllerInterface;
-import models.BeatModel;
+import Models.BeatModel;
 
 
 public class DJTestDrive {

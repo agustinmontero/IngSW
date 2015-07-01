@@ -1,18 +1,18 @@
 package Views;
 
-import models.FreeFallModel;
+import Models.FreeFallModel;
 import javax.swing.JOptionPane;
 import Observers.BPMObserver;
 import Observers.BeatObserver;
 import Adapter.FreeFallAdapter;
 
-public class JFrameExample extends javax.swing.JFrame implements BPMObserver, BeatObserver{
+public class FreeFallView extends javax.swing.JFrame implements BPMObserver, BeatObserver{
 
     FreeFallModel model;
     FreeFallAdapter freeFallAdapter;
     private int initialHigh;
     
-    public JFrameExample() {
+    public FreeFallView() {
         this.model = new FreeFallModel();
         this.freeFallAdapter = new FreeFallAdapter(model);
         initComponents();
@@ -222,20 +222,21 @@ public class JFrameExample extends javax.swing.JFrame implements BPMObserver, Be
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameExample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameExample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameExample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameExample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameExample().setVisible(true);
+                new FreeFallView().setVisible(true);
             }
         });
     }

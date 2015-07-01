@@ -13,8 +13,10 @@ public class FreeFallController implements ControllerInterface{
     
     FreeFallModelInterface model;
     ViewInterface view;
+    private boolean flag;
 
     public FreeFallController(FreeFallModelInterface model) {
+        flag = false;
         this.model = model;        
         view = new DJView(this, new FreeFallAdapter(model));
         view.createView();
@@ -25,13 +27,17 @@ public class FreeFallController implements ControllerInterface{
 
     public FreeFallController(FreeFallModelInterface model, String viewName) {
         this.model = model;
-        if ("FreeFallView".equals(viewName)) {
-            //this.initalizeFFView();
-        }
-        else if("DJViewAppSelector".equals(viewName)){
+        if("DJViewAppSelector".equals(viewName)){
             this.initalizeDJVAppSelector();
         }
     }
+
+    public FreeFallController(FreeFallModelInterface model, ViewInterface view) {
+        this.model = model;
+        this.view = view;
+        this.initalizeControls();
+    }
+    
     
     @Override
     public void start() {
@@ -62,20 +68,19 @@ public class FreeFallController implements ControllerInterface{
         model.setAltitude(bpm);
     }
     
-    /*private void initalizeFFView(){
-        this.view = new FreeFallView(this, new FreeFallAdapter(model));
-        this.view.createView();
-        this.view.createControls();
-        this.view.disableStopMenuItem();
-        this.view.enableStartMenuItem();
-    }*/
-    
-    private void initalizeDJVAppSelector(){
+    private void initalizeDJVAppSelector(){        
         this.view = new DJViewAppSelector(this, new FreeFallAdapter(model));
         this.view.createView();
         this.view.createControls();
         this.view.disableStopMenuItem();
         this.view.enableStartMenuItem();
+        
+    }
+    
+    private void initalizeControls(){
+        this.view.disableStopMenuItem();
+        this.view.enableStartMenuItem();
+        this.model.initialize();
     }
     
 }

@@ -7,9 +7,9 @@ import Controllers.FreeFallController;
 import Interfaces.FreeFallModelInterface;
 import Controllers.HeartController;
 import Interfaces.HeartModelInterface;
-import models.HeartModel;
-import models.FreeFallModel;
-import models.BeatModel;
+import Models.HeartModel;
+import Models.FreeFallModel;
+import Models.BeatModel;
 
 public class AllModelsTestDrive {
 
