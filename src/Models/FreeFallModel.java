@@ -122,6 +122,9 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         df.setRoundingMode(RoundingMode.DOWN);        
         return df.format(elapsdToSeconds);
     }
-    
-    
+
+    @Override
+    public double getGravity() {
+        return GRAVITY;
+    }
 }

@@ -37,6 +37,10 @@ public class FreeFallAdapter implements BeatModelInterface{
     public int getBPM() {
         return freeFall.getAltitude();
     }
+    
+    public double getGravity(){
+        return freeFall.getGravity();
+    }
 
     @Override
     public void registerObserver(BeatObserver o) {

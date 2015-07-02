@@ -12,6 +12,7 @@ public interface FreeFallModelInterface {
     
     void setAltitude(int altitude);
     int getAltitude();
+    double getGravity();
     
     void registerObserver(BeatObserver o);
     void removeObserver(BeatObserver o);
