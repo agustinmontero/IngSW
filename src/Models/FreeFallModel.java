@@ -14,12 +14,13 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     ArrayList bpmObserver;
     private final int CRITICAL_HEIGHT = 1000;
     private final int GROUND = 0;
-    private final long time_interval = 450;    
+    private final long time_interval = 99;    
     private final double GRAVITY = 9.8;
     double seconds;
     long startTimeMillis;
     long endTimeMillis;
     private int altitude;
+    private int initialHigh;
     Thread thread;
 
     public FreeFallModel() {
@@ -39,6 +40,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     @Override
     public void on() {
         setAltitude(getAltitude());
+        initialHigh = getAltitude();
         thread.start();
     }
 
@@ -59,7 +61,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
                 Thread.sleep(time_interval);
             } catch (Exception e) {}
             seconds+= 0.1;
-            current_altitude= (int) (getAltitude()- 0.5*GRAVITY*Math.pow(seconds, 2));
+            current_altitude= (int) (initialHigh - 0.5*GRAVITY*Math.pow(seconds, 2));
             endTimeMillis = System.currentTimeMillis();
             setAltitude(current_altitude);
             if (getAltitude()<0) {
