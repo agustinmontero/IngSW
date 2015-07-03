@@ -7,16 +7,16 @@ import Views.DJViewAppSelector;
 import Adapter.FreeFallAdapter;
 import Interfaces.FreeFallModelInterface;
 import Interfaces.ViewInterface;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class FreeFallController implements ControllerInterface{
     
     FreeFallModelInterface model;
     ViewInterface view;
-    private boolean flag;
 
     public FreeFallController(FreeFallModelInterface model) {
-        flag = false;
         this.model = model;        
         view = new DJView(this, new FreeFallAdapter(model));
         view.createView();
@@ -65,7 +65,12 @@ public class FreeFallController implements ControllerInterface{
 
     @Override
     public void setBPM(int bpm) {
-        model.setAltitude(bpm);
+        if (bpm>0) {
+            model.setAltitude(bpm);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
     
     private void initalizeDJVAppSelector(){        

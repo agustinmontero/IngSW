@@ -89,6 +89,9 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                             .addComponent(jButtonSetHigh))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -100,6 +103,8 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                 .addComponent(jButtonStart)
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
 
         highLabel.setText("High");
 
@@ -200,8 +205,12 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         int bpm = Integer.parseInt(jTextField1.getText());
-        this.initialHigh = bpm;
-        freeFallAdapter.setBPM(bpm);
+        if (bpm>0) {
+            this.initialHigh = bpm;
+            freeFallAdapter.setBPM(bpm);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jTextField1ComponentAdded
@@ -210,8 +219,13 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
     private void jButtonSetHighActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetHighActionPerformed
         int bpm = Integer.parseInt(jTextField1.getText());
-        this.initialHigh = bpm;
-        freeFallAdapter.setBPM(bpm);
+        if (bpm>0) {
+            this.initialHigh = bpm;
+            freeFallAdapter.setBPM(bpm);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButtonSetHighActionPerformed
 
     private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
