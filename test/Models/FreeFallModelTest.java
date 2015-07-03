@@ -77,6 +77,9 @@ public class FreeFallModelTest {
         FreeFallModel instance = new FreeFallModel();
         instance.setAltitude(altitude);
         assertEquals(instance.getAltitude(), altitude);
+        int altitude2 = -20;
+        instance.setAltitude(altitude2);
+        assertEquals(instance.getAltitude(), altitude);
     }
 
     @Test

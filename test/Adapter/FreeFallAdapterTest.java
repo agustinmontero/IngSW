@@ -1,0 +1,92 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Adapter;
+
+import Interfaces.FreeFallModelInterface;
+import Models.FreeFallModel;
+import Observers.BPMObserver;
+import Observers.BeatObserver;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Agustin
+ */
+public class FreeFallAdapterTest {
+    
+    FreeFallModelInterface model = new FreeFallModel();
+    FreeFallAdapter instance = new FreeFallAdapter(model);
+    
+    public FreeFallAdapterTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+    
+    @Test
+    public void testOn() {
+        System.out.println("on");
+        FreeFallAdapter instance = new FreeFallAdapter(model);
+        instance.on();
+    }
+
+    @Test
+    public void testOff() {
+        System.out.println("off");
+        instance.off();
+    }
+
+    @Test
+    public void testSetBPM() {
+        System.out.println("setBPM");
+        int bpm = 10;
+        instance.setBPM(bpm);
+        assertEquals(bpm, instance.getBPM());
+    }
+
+    @Test
+    public void testGetBPM() {
+        System.out.println("getBPM");
+        int expResult = 4000;
+        int result = instance.getBPM();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetGravity() {
+        System.out.println("getGravity");
+        double expResult = 9.8;
+        double result = instance.getGravity();
+        assertEquals(expResult, result, 0.0);
+    }
+    
+    @Test
+    public void testGetModel() {
+        System.out.println("getModel");        
+        FreeFallModelInterface expResult = this.model;
+        FreeFallModelInterface result = instance.getModel();
+        assertEquals(expResult, result);
+    }
+    
+}

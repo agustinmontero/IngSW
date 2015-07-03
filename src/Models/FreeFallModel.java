@@ -30,7 +30,6 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         this.endTimeMillis = 0;
         this.bpmObserver = new ArrayList();
         this.beatObserver = new ArrayList();
-        thread = new Thread(this);
     }
     
     @Override
@@ -41,12 +40,15 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     public void on() {
         setAltitude(getAltitude());
         initialHigh = getAltitude();
+        thread = new Thread(this);
         thread.start();
     }
 
     @Override
     public void off() {
-        thread.interrupt();
+        if(thread !=null){
+            thread.interrupt();
+        }        
         setAltitude(GROUND);
     }
     
@@ -62,10 +64,11 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             } catch (Exception e) {}
             seconds+= 0.1;
             current_altitude= (int) (initialHigh - 0.5*GRAVITY*Math.pow(seconds, 2));
-            endTimeMillis = System.currentTimeMillis();
-            setAltitude(current_altitude);
-            if (getAltitude()<0) {
-                off();
+            endTimeMillis = System.currentTimeMillis();            
+            if (current_altitude>=0) {
+                setAltitude(current_altitude);
+            } else{
+                this.off();
             }
         }
     }
@@ -76,9 +79,11 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     }
     
     public void setAltitude(int altitude){
-        this.altitude= altitude;
-        notifyBPMObserver();
-        notifyBeatObserver();
+        if(altitude>=0){
+            this.altitude= altitude;
+            notifyBPMObserver();
+            notifyBeatObserver();
+        }
     }
     
     public void registerObserver(BeatObserver o) {
