@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Adapter;
 
 import Interfaces.FreeFallModelInterface;
@@ -22,10 +17,12 @@ import static org.junit.Assert.*;
  */
 public class FreeFallAdapterTest {
     
-    FreeFallModelInterface model = new FreeFallModel();
-    FreeFallAdapter instance = new FreeFallAdapter(model);
+    FreeFallModelInterface model;
+    FreeFallAdapter instance;
     
     public FreeFallAdapterTest() {
+        model = new FreeFallModel();
+        instance = new FreeFallAdapter(model);
     }
     
     @BeforeClass
@@ -47,7 +44,6 @@ public class FreeFallAdapterTest {
     @Test
     public void testOn() {
         System.out.println("on");
-        FreeFallAdapter instance = new FreeFallAdapter(model);
         instance.on();
     }
 

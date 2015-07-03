@@ -1,13 +1,11 @@
 package Controllers;
 
-import javax.swing.text.View;
 import Interfaces.ControllerInterface;
 import Views.DJView;
 import Views.DJViewAppSelector;
 import Adapter.FreeFallAdapter;
 import Interfaces.FreeFallModelInterface;
 import Interfaces.ViewInterface;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
