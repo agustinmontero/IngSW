@@ -66,4 +66,11 @@ public class FreeFallAdapter implements BeatModelInterface{
         return freeFall;
     }
     
+    public void setMass(double m){
+        this.freeFall.setMass(m);
+    }
+    
+    public double getMass(){
+        return freeFall.getMass();
+    }
 }

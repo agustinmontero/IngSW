@@ -17,8 +17,9 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     private final long time_interval = 99;    
     private final double GRAVITY = 9.8;
     private double mass;
-    private double kineticEn;
-    private double potencialEn;
+    private int kineticEn;
+    private int potentialEn;
+    private int totalEnergy;
     private double velocity;
     double seconds;
     long startTimeMillis;
@@ -54,6 +55,8 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             thread.interrupt();
         }        
         setAltitude(GROUND);
+        notifyBPMObserver();
+        notifyBeatObserver();
     }
     
     public void run() {
@@ -63,19 +66,24 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         int current_altitude = getAltitude();
         double vel = 0;
         startTimeMillis = System.currentTimeMillis();
+        totalEnergy = (int) (this.mass*this.GRAVITY*this.initialHigh);
         while (parachute_close && getAltitude()>GROUND) {
             try {
                 Thread.sleep(time_interval);
             } catch (Exception e) {}
             seconds+= 0.1;
             current_altitude= (int) (initialHigh - 0.5*GRAVITY*Math.pow(seconds, 2));
-            vel += GRAVITY*seconds;
+            vel = GRAVITY*seconds;
             endTimeMillis = System.currentTimeMillis();            
             if (current_altitude>=0) {
                 this.setAltitude(current_altitude);
                 this.setVelocity(vel);
                 this.caclulateEnergy();
+                this.notifyBPMObserver();
+                this.notifyBeatObserver();
             } else{
+                kineticEn = totalEnergy;
+                potentialEn = 0;
                 this.off();
             }
         }
@@ -88,11 +96,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     
     @Override
     public void setAltitude(int altitude){
-        if(altitude>=0){
-            this.altitude= altitude;
-            notifyBPMObserver();
-            notifyBeatObserver();
-        }
+        if(altitude>=0) this.altitude= altitude;
     }
     
     @Override
@@ -148,27 +152,33 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         return GRAVITY;
     }
 
-    public double getKineticEn() {
+    public int getKineticEn() {
         return kineticEn;
     }
 
-    public double getMass() {
-        return mass;
-    }
-
-    public double getPotencialEn() {
-        return potencialEn;
+    public int getPotencialEn() {
+        return (int) potentialEn;
     }
 
     public double getVelocity() {
         return velocity;
     }
 
+    public int getTotalEnergy() {
+        return totalEnergy;
+    }
+    
     public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
-    
-    
+
+    public double getMass() {
+        return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
+    }
     
     private void caclulateEnergy(){
         if (mass != 0) {
@@ -177,8 +187,8 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             double h = this.getAltitude();
             double v = this.getVelocity();
             try {
-                potencialEn = m*g*h;
-                kineticEn = 0.5*m*Math.pow(v, 2);
+                potentialEn = (int) (m*g*h);
+                kineticEn = (int) (0.5*m*Math.pow(v, 2));
             } catch (ArithmeticException e) {
                 System.out.println("ARITHMETIC E!!!");
             }

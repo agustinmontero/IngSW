@@ -11,6 +11,8 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     FreeFallModel model;
     FreeFallAdapter freeFallAdapter;
     private int initialHigh;
+    private int initialEnergy;
+    private double mass;
     
     public FreeFallView() {
         this.model = new FreeFallModel();
@@ -27,16 +29,27 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar2 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        jTextFieldHigh = new javax.swing.JTextField();
         jButtonSetHigh = new javax.swing.JButton();
         jButtonStart = new javax.swing.JButton();
+        jTextFieldMass = new javax.swing.JTextField();
+        jButtonMass = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         highLabel = new javax.swing.JLabel();
         elapsedTimeLabel = new javax.swing.JLabel();
         jLabelGravity = new javax.swing.JLabel();
+        jLabelKinetic = new javax.swing.JLabel();
+        jLabelPotential = new javax.swing.JLabel();
+        jLabelMass = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBarKinetic = new javax.swing.JProgressBar();
+        jProgressBarPotencial = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemStart = new javax.swing.JMenuItem();
@@ -45,20 +58,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jProgressBar1, org.jdesktop.beansbinding.ELProperty.create("${orientation}1"), jProgressBar1, org.jdesktop.beansbinding.BeanProperty.create("orientation"));
-        bindingGroup.addBinding(binding);
-
-        jTextField1.setToolTipText("");
-        jTextField1.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                jTextField1ComponentAdded(evt);
-            }
-        });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jTextFieldHigh.setToolTipText("");
 
         jButtonSetHigh.setText("Set High");
         jButtonSetHigh.addActionListener(new java.awt.event.ActionListener() {
@@ -74,52 +74,59 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSetHigh)
-                    .addComponent(jButtonStart))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
-
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButtonSetHigh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonStart))
-        );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
+        jButtonMass.setText("Set Mass");
+        jButtonMass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jButtonSetHigh))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jButtonStart)))
+                        .addGap(0, 29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jButtonMass))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldHigh, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                .addComponent(jTextFieldMass)))))
+                .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTextFieldHigh, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSetHigh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldMass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonMass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonStart)
+                .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
 
         highLabel.setText("High");
 
@@ -127,18 +134,32 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
         jLabelGravity.setText("Gravity =  [m/s]");
 
+        jLabelKinetic.setText("Kinetic Energy = [J]");
+
+        jLabelPotential.setText("Potencial Energy = [J]");
+
+        jLabelMass.setText("Mass = [Kg]");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabelGravity, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                .addGap(117, 117, 117))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabelGravity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(32, 32, 32))
                     .addComponent(highLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(elapsedTimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(47, 47, 47))
+                    .addComponent(elapsedTimeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(71, 71, 71))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabelMass, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelKinetic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelPotential, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,15 +170,65 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                 .addComponent(elapsedTimeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGravity)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelKinetic)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelPotential)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelMass)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jProgressBar1, org.jdesktop.beansbinding.ELProperty.create("${orientation}1"), jProgressBar1, org.jdesktop.beansbinding.BeanProperty.create("orientation"));
+        bindingGroup.addBinding(binding);
+
+        jProgressBarKinetic.setOrientation(1);
+
+        jProgressBarPotencial.setOrientation(1);
+
+        jLabel1.setText("Altitude");
+
+        jLabel2.setText("Kinetic");
+
+        jLabel3.setText("Potencial");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jProgressBarKinetic, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jProgressBarPotencial, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBarKinetic, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBarPotencial, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addContainerGap())
+        );
+
         jMenuFile.setText("Menu");
-        jMenuFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuFileActionPerformed(evt);
-            }
-        });
 
         jMenuItemStart.setText("Start");
         jMenuItemStart.addActionListener(new java.awt.event.ActionListener() {
@@ -193,20 +264,18 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(2, 2, 2)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -218,24 +287,9 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
         freeFallAdapter.on();
     }//GEN-LAST:event_jMenuItemStartActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        int bpm = Integer.parseInt(jTextField1.getText());
-        if (bpm > 0) {
-            this.initialHigh = bpm;
-            freeFallAdapter.setBPM(bpm);
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jTextField1ComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ComponentAdded
-
     private void jButtonSetHighActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetHighActionPerformed
-        if (jTextField1.getText() != "") {
-            int bpm = Integer.parseInt(jTextField1.getText());
+        if (jTextFieldHigh.getText() != "") {
+            int bpm = Integer.parseInt(jTextFieldHigh.getText());
         if (bpm>0) {
             this.initialHigh = bpm;
             freeFallAdapter.setBPM(bpm);
@@ -249,10 +303,6 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
         System.exit(0);
     }//GEN-LAST:event_jMenuItemExitActionPerformed
 
-    private void jMenuFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuFileActionPerformed
-
     private void jMenuItemStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopActionPerformed
         freeFallAdapter.off();
     }//GEN-LAST:event_jMenuItemStopActionPerformed
@@ -261,6 +311,18 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
         freeFallAdapter.on();
         jLabelGravity.setText("Gravity = " + freeFallAdapter.getGravity() + "[m/s]");
     }//GEN-LAST:event_jButtonStartActionPerformed
+
+    private void jButtonMassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMassActionPerformed
+        if (jTextFieldMass.getText() != "") {
+            double m = Double.parseDouble(jTextFieldMass.getText());
+        if (m >0) {
+            this.mass = m;
+            freeFallAdapter.setMass(m);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
+        }
+        }
+    }//GEN-LAST:event_jButtonMassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,9 +363,16 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel elapsedTimeLabel;
     private javax.swing.JLabel highLabel;
+    private javax.swing.JButton jButtonMass;
     private javax.swing.JButton jButtonSetHigh;
     private javax.swing.JButton jButtonStart;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelGravity;
+    private javax.swing.JLabel jLabelKinetic;
+    private javax.swing.JLabel jLabelMass;
+    private javax.swing.JLabel jLabelPotential;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemExit;
@@ -311,9 +380,13 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     private javax.swing.JMenuItem jMenuItemStop;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JProgressBar jProgressBarKinetic;
+    private javax.swing.JProgressBar jProgressBarPotencial;
+    private javax.swing.JTextField jTextFieldHigh;
+    private javax.swing.JTextField jTextFieldMass;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
@@ -332,6 +405,9 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                                 if(elapsedTimeLabel != null){
                                     elapsedTimeLabel.setText("Elapsed Time[sec]: " + model.getTime());
                                 }
+                                jLabelMass.setText("Mass = " + model.getMass() + "[Kg]");
+                                jLabelPotential.setText("Potential Energy = " + model.getPotencialEn() + "[J]");
+                                jLabelKinetic.setText("Kinetic Energy = " + model.getKineticEn() + "[J]");
 			}
 		}
     }
@@ -340,12 +416,21 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     public void updateBeat() {
         try {
             int altitude = model.getAltitude();
-            int percent = (int) ((altitude * 100) / initialHigh);
-            jProgressBar1.setValue(percent);
-            jProgressBar1.repaint();
+            int percentAlt = (int) ((altitude * 100) / initialHigh);
+            jProgressBar1.setValue(percentAlt);
+            //jProgressBar1.repaint();
             
-            int kineticEn = (int) model.getKineticEn();
-            int potencialEn = (int) model.getPotencialEn();
+            if (this.mass != 0) {
+                int kineticEn = (int) model.getKineticEn();
+                int percentKin = (int) ((kineticEn*100)/model.getTotalEnergy());
+                jProgressBarKinetic.setValue(percentKin);
+                //jProgressBarKinetic.repaint();
+
+                int potencialEn = (int) model.getPotencialEn();
+                int percentPot = (int) ((potencialEn*100)/model.getTotalEnergy());
+                jProgressBarPotencial.setValue(percentPot);
+                //jProgressBarPotencial.repaint();
+            }
         } catch (ArithmeticException e) {
             System.out.println("ERROR EN updateBeat()!!!");
         }
