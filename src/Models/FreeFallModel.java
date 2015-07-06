@@ -16,6 +16,10 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     private final int GROUND = 0;
     private final long time_interval = 99;    
     private final double GRAVITY = 9.8;
+    private double mass;
+    private double kineticEn;
+    private double potencialEn;
+    private double velocity;
     double seconds;
     long startTimeMillis;
     long endTimeMillis;
@@ -57,6 +61,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         seconds = 0;
         boolean parachute_close = true;
         int current_altitude = getAltitude();
+        double vel = 0;
         startTimeMillis = System.currentTimeMillis();
         while (parachute_close && getAltitude()>GROUND) {
             try {
@@ -64,9 +69,12 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             } catch (Exception e) {}
             seconds+= 0.1;
             current_altitude= (int) (initialHigh - 0.5*GRAVITY*Math.pow(seconds, 2));
+            vel += GRAVITY*seconds;
             endTimeMillis = System.currentTimeMillis();            
             if (current_altitude>=0) {
-                setAltitude(current_altitude);
+                this.setAltitude(current_altitude);
+                this.setVelocity(vel);
+                this.caclulateEnergy();
             } else{
                 this.off();
             }
@@ -78,6 +86,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         return altitude;
     }
     
+    @Override
     public void setAltitude(int altitude){
         if(altitude>=0){
             this.altitude= altitude;
@@ -86,15 +95,19 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         }
     }
     
+    @Override
     public void registerObserver(BeatObserver o) {
         beatObserver.add(o);
     }
 
-        public void removeObserver(BeatObserver o) {
+    @Override
+    public void removeObserver(BeatObserver o) {
         int i = beatObserver.indexOf(o);
-        if(i>=0)
+        if (i >= 0) {
             beatObserver.remove(o);
+        }
     }
+    
     
     public void notifyBeatObserver(){
         for (int i = 0; i < beatObserver.size(); i++) {
@@ -103,10 +116,12 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         }
     }
 
+    @Override
     public void registerObserver(BPMObserver o) {
         bpmObserver.add(o);
     }
 
+    @Override
     public void removeObserver(BPMObserver o) {
         int i = bpmObserver.indexOf(o);
         if(i>=0)
@@ -131,5 +146,42 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     @Override
     public double getGravity() {
         return GRAVITY;
+    }
+
+    public double getKineticEn() {
+        return kineticEn;
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public double getPotencialEn() {
+        return potencialEn;
+    }
+
+    public double getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
+    }
+    
+    
+    
+    private void caclulateEnergy(){
+        if (mass != 0) {
+            double m = mass;
+            double g = this.getGravity();
+            double h = this.getAltitude();
+            double v = this.getVelocity();
+            try {
+                potencialEn = m*g*h;
+                kineticEn = 0.5*m*Math.pow(v, 2);
+            } catch (ArithmeticException e) {
+                System.out.println("ARITHMETIC E!!!");
+            }
+        }
     }
 }

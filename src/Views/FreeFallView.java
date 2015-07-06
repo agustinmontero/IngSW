@@ -338,9 +338,16 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
     @Override
     public void updateBeat() {
-        int altitude = model.getAltitude();
-        int percent = (int)((altitude*100)/initialHigh);
-        jProgressBar1.setValue(percent);
-        jProgressBar1.repaint();
+        try {
+            int altitude = model.getAltitude();
+            int percent = (int) ((altitude * 100) / initialHigh);
+            jProgressBar1.setValue(percent);
+            jProgressBar1.repaint();
+            
+            int kineticEn = (int) model.getKineticEn();
+            int potencialEn = (int) model.getPotencialEn();
+        } catch (ArithmeticException e) {
+            System.out.println("ERROR EN updateBeat()!!!");
+        }
     }
 }
