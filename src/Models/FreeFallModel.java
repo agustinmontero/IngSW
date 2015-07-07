@@ -74,11 +74,11 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             seconds+= 0.1;
             current_altitude= (int) (initialHigh - 0.5*GRAVITY*Math.pow(seconds, 2));
             vel = GRAVITY*seconds;
+            this.setVelocity(vel);
+            this.caclulateEnergy();
             endTimeMillis = System.currentTimeMillis();            
             if (current_altitude>=0) {
                 this.setAltitude(current_altitude);
-                this.setVelocity(vel);
-                this.caclulateEnergy();
                 this.notifyBPMObserver();
                 this.notifyBeatObserver();
             } else{

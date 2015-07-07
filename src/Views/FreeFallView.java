@@ -128,11 +128,11 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
 
-        highLabel.setText("High");
+        highLabel.setText("Current High: [m]");
 
-        elapsedTimeLabel.setText("Elapsed Time");
+        elapsedTimeLabel.setText("Elapsed Time: [s]");
 
-        jLabelGravity.setText("Gravity =  [m/s]");
+        jLabelGravity.setText("Gravity =  [m/s^2]");
 
         jLabelKinetic.setText("Kinetic Energy = [J]");
 
@@ -211,7 +211,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,26 +391,22 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void updateBPM() { 
+    public void updateBPM() {
         if (model != null) {
-			int bpm = model.getAltitude();
-			if (bpm == 0) {
-				if (highLabel != null) {
-        			highLabel.setText("Offline");
-				}
-			} else {
-				if (highLabel != null) {
-        			highLabel.setText("Current High[m]: " + model.getAltitude());
-				}
-                                if(elapsedTimeLabel != null){
-                                    elapsedTimeLabel.setText("Elapsed Time[sec]: " + model.getTime());
-                                }
-                                jLabelMass.setText("Mass = " + model.getMass() + "[Kg]");
-                                jLabelPotential.setText("Potential Energy = " + model.getPotencialEn() + "[J]");
-                                jLabelKinetic.setText("Kinetic Energy = " + model.getKineticEn() + "[J]");
-			}
-		}
+            int bpm = model.getAltitude();
+
+            if (highLabel != null) {
+                highLabel.setText("Current High[m]: " + model.getAltitude());
+            }
+            if (elapsedTimeLabel != null) {
+                elapsedTimeLabel.setText("Elapsed Time[sec]: " + model.getTime());
+            }
+            jLabelMass.setText("Mass = " + model.getMass() + "[Kg]");
+            jLabelPotential.setText("Potential Energy = " + model.getPotencialEn() + "[J]");
+            jLabelKinetic.setText("Kinetic Energy = " + model.getKineticEn() + "[J]");
+        }
     }
+    
 
     @Override
     public void updateBeat() {

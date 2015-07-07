@@ -226,17 +226,17 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="highLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="High"/>
+            <Property name="text" type="java.lang.String" value="Current High: [m]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="elapsedTimeLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Elapsed Time"/>
+            <Property name="text" type="java.lang.String" value="Elapsed Time: [s]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelGravity">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gravity =  [m/s]"/>
+            <Property name="text" type="java.lang.String" value="Gravity =  [m/s^2]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelKinetic">
@@ -279,7 +279,7 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
