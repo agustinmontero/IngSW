@@ -190,16 +190,19 @@
                   </Group>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
-                  <Component id="jLabelMass" min="-2" pref="96" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelKinetic" alignment="1" max="32767" attributes="0"/>
                       <Component id="jLabelPotential" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabelMass" min="-2" pref="96" max="-2" attributes="0"/>
+                      <Component id="jLabelTotalEn" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -217,8 +220,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelPotential" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabelTotalEn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Component id="jLabelMass" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -226,7 +231,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="highLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Current High: [m]"/>
+            <Property name="text" type="java.lang.String" value="Current High= [m]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="elapsedTimeLabel">
@@ -246,12 +251,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPotential">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Potencial Energy = [J]"/>
+            <Property name="text" type="java.lang.String" value="Potential Energy = [J]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelMass">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mass = [Kg]"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelTotalEn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Total Energy = [J]"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -279,7 +289,7 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -304,6 +314,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JProgressBar" name="jProgressBar1">
+          <Properties>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
           <BindingProperties>
             <BindingProperty name="orientation" source="jProgressBar1" sourcePath="${orientation}1" target="jProgressBar1" targetPath="orientation" updateStrategy="0" immediately="false"/>
           </BindingProperties>
@@ -311,11 +324,13 @@
         <Component class="javax.swing.JProgressBar" name="jProgressBarKinetic">
           <Properties>
             <Property name="orientation" type="int" value="1"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="jProgressBarPotencial">
           <Properties>
             <Property name="orientation" type="int" value="1"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -330,7 +345,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Potencial"/>
+            <Property name="text" type="java.lang.String" value="Potential"/>
           </Properties>
         </Component>
       </SubComponents>

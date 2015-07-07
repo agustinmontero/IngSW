@@ -43,6 +43,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
         jLabelKinetic = new javax.swing.JLabel();
         jLabelPotential = new javax.swing.JLabel();
         jLabelMass = new javax.swing.JLabel();
+        jLabelTotalEn = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBarKinetic = new javax.swing.JProgressBar();
@@ -128,7 +129,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
 
-        highLabel.setText("Current High: [m]");
+        highLabel.setText("Current High= [m]");
 
         elapsedTimeLabel.setText("Elapsed Time: [s]");
 
@@ -136,9 +137,11 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
         jLabelKinetic.setText("Kinetic Energy = [J]");
 
-        jLabelPotential.setText("Potencial Energy = [J]");
+        jLabelPotential.setText("Potential Energy = [J]");
 
         jLabelMass.setText("Mass = [Kg]");
+
+        jLabelTotalEn.setText("Total Energy = [J]");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -152,14 +155,16 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                     .addComponent(highLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(elapsedTimeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(71, 71, 71))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabelMass, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelKinetic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelPotential, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelMass, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTotalEn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,22 +180,28 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelPotential)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTotalEn)
+                .addGap(4, 4, 4)
                 .addComponent(jLabelMass)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        jProgressBar1.setStringPainted(true);
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jProgressBar1, org.jdesktop.beansbinding.ELProperty.create("${orientation}1"), jProgressBar1, org.jdesktop.beansbinding.BeanProperty.create("orientation"));
         bindingGroup.addBinding(binding);
 
         jProgressBarKinetic.setOrientation(1);
+        jProgressBarKinetic.setStringPainted(true);
 
         jProgressBarPotencial.setOrientation(1);
+        jProgressBarPotencial.setStringPainted(true);
 
         jLabel1.setText("Altitude");
 
         jLabel2.setText("Kinetic");
 
-        jLabel3.setText("Potencial");
+        jLabel3.setText("Potential");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -211,7 +222,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,6 +384,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     private javax.swing.JLabel jLabelKinetic;
     private javax.swing.JLabel jLabelMass;
     private javax.swing.JLabel jLabelPotential;
+    private javax.swing.JLabel jLabelTotalEn;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemExit;
@@ -393,17 +405,12 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     @Override
     public void updateBPM() {
         if (model != null) {
-            int bpm = model.getAltitude();
-
-            if (highLabel != null) {
-                highLabel.setText("Current High[m]: " + model.getAltitude());
-            }
-            if (elapsedTimeLabel != null) {
-                elapsedTimeLabel.setText("Elapsed Time[sec]: " + model.getTime());
-            }
+            highLabel.setText("Current High[m]: " + model.getAltitude());
+            elapsedTimeLabel.setText("Elapsed Time[sec]: " + model.getTime());
             jLabelMass.setText("Mass = " + model.getMass() + "[Kg]");
             jLabelPotential.setText("Potential Energy = " + model.getPotencialEn() + "[J]");
             jLabelKinetic.setText("Kinetic Energy = " + model.getKineticEn() + "[J]");
+            jLabelTotalEn.setText("Total Energy = " + model.getTotalEnergy() + "[J]");
         }
     }
     
@@ -414,21 +421,17 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
             int altitude = model.getAltitude();
             int percentAlt = (int) ((altitude * 100) / initialHigh);
             jProgressBar1.setValue(percentAlt);
-            //jProgressBar1.repaint();
             
             if (this.mass != 0) {
                 int kineticEn = (int) model.getKineticEn();
                 int percentKin = (int) ((kineticEn*100)/model.getTotalEnergy());
                 jProgressBarKinetic.setValue(percentKin);
-                //jProgressBarKinetic.repaint();
 
                 int potencialEn = (int) model.getPotencialEn();
                 int percentPot = (int) ((potencialEn*100)/model.getTotalEnergy());
                 jProgressBarPotencial.setValue(percentPot);
-                //jProgressBarPotencial.repaint();
             }
         } catch (ArithmeticException e) {
-            System.out.println("ERROR EN updateBeat()!!!");
         }
     }
 }

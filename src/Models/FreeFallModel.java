@@ -12,7 +12,6 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     
     ArrayList beatObserver;
     ArrayList bpmObserver;
-    private final int CRITICAL_HEIGHT = 1000;
     private final int GROUND = 0;
     private final long time_interval = 99;    
     private final double GRAVITY = 9.8;
@@ -55,19 +54,21 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             thread.interrupt();
         }        
         setAltitude(GROUND);
+        this.kineticEn = totalEnergy;
+        this.potentialEn = 0;
         notifyBPMObserver();
         notifyBeatObserver();
     }
     
+    @Override
     public void run() {
         
         seconds = 0;
-        boolean parachute_close = true;
         int current_altitude = getAltitude();
         double vel = 0;
         startTimeMillis = System.currentTimeMillis();
         totalEnergy = (int) (this.mass*this.GRAVITY*this.initialHigh);
-        while (parachute_close && getAltitude()>GROUND) {
+        while (getAltitude()>GROUND) {
             try {
                 Thread.sleep(time_interval);
             } catch (Exception e) {}
@@ -77,13 +78,11 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             this.setVelocity(vel);
             this.caclulateEnergy();
             endTimeMillis = System.currentTimeMillis();            
-            if (current_altitude>=0) {
+            if (current_altitude>0) {
                 this.setAltitude(current_altitude);
                 this.notifyBPMObserver();
                 this.notifyBeatObserver();
             } else{
-                kineticEn = totalEnergy;
-                potentialEn = 0;
                 this.off();
             }
         }
@@ -172,10 +171,12 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         this.velocity = velocity;
     }
 
+    @Override
     public double getMass() {
         return mass;
     }
 
+    @Override
     public void setMass(double mass) {
         this.mass = mass;
     }
