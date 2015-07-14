@@ -11,14 +11,12 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     FreeFallModel model;
     FreeFallAdapter freeFallAdapter;
     private int initialHigh;
-    private int initialEnergy;
     private double mass;
     
     public FreeFallView() {
         this.model = new FreeFallModel();
         this.freeFallAdapter = new FreeFallAdapter(model);
         initComponents();
-        jProgressBar1.setValue(100);
         this.model.registerObserver((BeatObserver)this);
 	this.model.registerObserver((BPMObserver)this);
     }
@@ -434,4 +432,22 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
         } catch (ArithmeticException e) {
         }
     }
+
+    public int getInitialHigh() {
+        return initialHigh;
+    }
+
+    public void setInitialHigh(int initialHigh) {
+        this.initialHigh = initialHigh;
+    }
+    
+    public double getMass() {
+        return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
+    }
+    
+    
 }
