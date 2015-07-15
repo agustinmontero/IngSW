@@ -60,11 +60,22 @@ public class FreeFallAdapterTest {
         instance.setBPM(bpm);
         assertEquals(bpm, instance.getBPM());
     }
+    
+    @Test
+    public void testSetBPM2() {
+        System.out.println("setBPM2");
+        int bpm = -10;
+        instance.setBPM(bpm);
+        boolean test = true;
+        if(instance.getBPM() == bpm) test = false;
+        
+        assertTrue(test);
+    }
 
     @Test
     public void testGetBPM() {
         System.out.println("getBPM");
-        int expResult = 4000;
+        int expResult = 1000;
         int result = instance.getBPM();
         assertEquals(expResult, result);
     }
@@ -82,7 +93,7 @@ public class FreeFallAdapterTest {
         System.out.println("getModel");        
         FreeFallModelInterface expResult = this.model;
         FreeFallModelInterface result = instance.getModel();
-        assertEquals(expResult, result);
+        assertSame (expResult, result);
     }
     
 }

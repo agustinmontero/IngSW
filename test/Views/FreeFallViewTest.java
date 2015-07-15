@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Views;
 
 import java.util.logging.Level;
@@ -14,10 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Agustin
- */
 public class FreeFallViewTest {
     
     FreeFallView instance;
@@ -71,5 +62,37 @@ public class FreeFallViewTest {
         int t = (int) (MASS*GRAV*HIGH);        
         assertEquals(t, totalEnergy);
         assertEquals(t , kinetic);
+        String time;
+        time = this.instance.model.getTime();
+        assertEquals(time, "14");
+    }
+    
+    @Test
+    public void badHighTest(){
+        System.out.println("badHigh");
+        int badHigh = -10;
+        this.instance.freeFallAdapter.setBPM(badHigh);
+        this.instance.model.setAltitude(badHigh);
+        int h;
+        h = this.instance.freeFallAdapter.getBPM();
+        System.out.println(h + " - " + badHigh);
+        boolean test = true;
+        if(h == badHigh) test = false;
+        assertTrue(test);
+    }
+    
+    @Test
+    public void badMassTest(){
+        System.out.println("badMassTest");
+        double badMass = -2.5;
+        this.instance.freeFallAdapter.setMass(badMass);
+        this.instance.model.setMass(badMass);
+        
+        double m;
+        m = this.instance.model.getMass();
+        System.out.println(m + " " + badMass);
+        boolean test = true;
+        if(m == badMass) test = false;
+        assertTrue(test);
     }
 }

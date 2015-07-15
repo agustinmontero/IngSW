@@ -12,9 +12,9 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     
     ArrayList beatObserver;
     ArrayList bpmObserver;
-    private final int GROUND = 0;
-    private final long time_interval = 99;    
-    private final double GRAVITY = 9.8;
+    private final int GROUND;
+    private final long TIME_INTERVAL;    
+    private final double GRAVITY;
     private double mass;
     private int kineticEn;
     private int potentialEn;
@@ -28,7 +28,10 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     Thread thread;
 
     public FreeFallModel() {
-        this.altitude = 4000;
+        this.GROUND = 0;
+        this.GRAVITY = 9.8;
+        this.TIME_INTERVAL = 99;
+        this.altitude = 1000;
         this.seconds = 0;
         this.startTimeMillis = 0;
         this.endTimeMillis = 0;
@@ -61,8 +64,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     }
     
     @Override
-    public void run() {
-        
+    public void run() {        
         seconds = 0;
         int current_altitude = getAltitude();
         double vel = 0;
@@ -70,7 +72,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         totalEnergy = (int) (this.mass*this.GRAVITY*this.initialHigh);
         while (getAltitude()>GROUND) {
             try {
-                Thread.sleep(time_interval);
+                Thread.sleep(TIME_INTERVAL);
             } catch (Exception e) {}
             seconds+= 0.1;
             current_altitude= (int) (initialHigh - 0.5*GRAVITY*Math.pow(seconds, 2));
@@ -178,10 +180,10 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
 
     @Override
     public void setMass(double mass) {
-        this.mass = mass;
+        if(mass > 0) this.mass = mass;        
     }
     
-    private void caclulateEnergy(){
+    private void caclulateEnergy() throws ArithmeticException{
         if (mass != 0) {
             double m = mass;
             double g = this.getGravity();
@@ -191,7 +193,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
                 potentialEn = (int) (m*g*h);
                 kineticEn = (int) (0.5*m*Math.pow(v, 2));
             } catch (ArithmeticException e) {
-                System.out.println("ARITHMETIC E!!!");
+                throw e;
             }
         }
     }
