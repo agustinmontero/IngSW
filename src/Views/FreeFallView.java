@@ -6,22 +6,21 @@ import Observers.BPMObserver;
 import Observers.BeatObserver;
 import Adapter.FreeFallAdapter;
 
-public class FreeFallView extends javax.swing.JFrame implements BPMObserver, BeatObserver{
+public class FreeFallView extends javax.swing.JFrame implements BPMObserver, BeatObserver {
 
     FreeFallModel model;
     FreeFallAdapter freeFallAdapter;
     private int initialHigh;
     private double mass;
-    
+
     public FreeFallView() {
         this.model = new FreeFallModel();
         this.freeFallAdapter = new FreeFallAdapter(model);
         initComponents();
-        this.model.registerObserver((BeatObserver)this);
-	this.model.registerObserver((BPMObserver)this);
+        this.model.registerObserver((BeatObserver) this);
+        this.model.registerObserver((BPMObserver) this);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -294,17 +293,16 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
 
     private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartActionPerformed
         freeFallAdapter.on();
+        jLabelGravity.setText("Gravity = " + freeFallAdapter.getGravity() + "[m/s]");
     }//GEN-LAST:event_jMenuItemStartActionPerformed
 
     private void jButtonSetHighActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetHighActionPerformed
-        if (jTextFieldHigh.getText() != "") {
+        try {
             int bpm = Integer.parseInt(jTextFieldHigh.getText());
-        if (bpm>0) {
             this.initialHigh = bpm;
             freeFallAdapter.setBPM(bpm);
-        } else {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
-        }
         }
     }//GEN-LAST:event_jButtonSetHighActionPerformed
 
@@ -322,14 +320,12 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     private void jButtonMassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMassActionPerformed
-        if (jTextFieldMass.getText() != "") {
+        try {
             double m = Double.parseDouble(jTextFieldMass.getText());
-        if (m >0) {
             this.mass = m;
             freeFallAdapter.setMass(m);
-        } else {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
-        }
         }
     }//GEN-LAST:event_jButtonMassActionPerformed
 
@@ -411,7 +407,6 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
             jLabelTotalEn.setText("Total Energy = " + model.getTotalEnergy() + "[J]");
         }
     }
-    
 
     @Override
     public void updateBeat() {
@@ -419,14 +414,14 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
             int altitude = model.getAltitude();
             int percentAlt = (int) ((altitude * 100) / initialHigh);
             jProgressBar1.setValue(percentAlt);
-            
+
             if (this.mass != 0) {
                 int kineticEn = (int) model.getKineticEn();
-                int percentKin = (int) ((kineticEn*100)/model.getTotalEnergy());
+                int percentKin = (int) ((kineticEn * 100) / model.getTotalEnergy());
                 jProgressBarKinetic.setValue(percentKin);
 
                 int potencialEn = (int) model.getPotencialEn();
-                int percentPot = (int) ((potencialEn*100)/model.getTotalEnergy());
+                int percentPot = (int) ((potencialEn * 100) / model.getTotalEnergy());
                 jProgressBarPotencial.setValue(percentPot);
             }
         } catch (ArithmeticException e) {
@@ -440,7 +435,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     public void setInitialHigh(int initialHigh) {
         this.initialHigh = initialHigh;
     }
-    
+
     public double getMass() {
         return mass;
     }
@@ -448,6 +443,5 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     public void setMass(double mass) {
         this.mass = mass;
     }
-    
-    
+
 }

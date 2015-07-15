@@ -61,15 +61,11 @@ public class FreeFallAdapterTest {
         assertEquals(bpm, instance.getBPM());
     }
     
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void testSetBPM2() {
         System.out.println("setBPM2");
         int bpm = -10;
         instance.setBPM(bpm);
-        boolean test = true;
-        if(instance.getBPM() == bpm) test = false;
-        
-        assertTrue(test);
     }
 
     @Test

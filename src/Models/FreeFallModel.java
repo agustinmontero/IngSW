@@ -96,8 +96,17 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     }
     
     @Override
-    public void setAltitude(int altitude){
-        if(altitude>=0) this.altitude= altitude;
+    public void setAltitude(int altitude)throws NumberFormatException{
+        try {
+            if (altitude >= 0) {
+                this.altitude = altitude;
+            } else {
+                throw new NumberFormatException();
+            }
+
+        } catch (Exception e) {
+            throw e;
+        }
     }
     
     @Override
@@ -179,8 +188,16 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     }
 
     @Override
-    public void setMass(double mass) {
-        if(mass > 0) this.mass = mass;        
+    public void setMass(double mass)throws NumberFormatException{
+        try {
+            if (mass > 0) {
+                this.mass = mass;
+            } else {
+                throw new NumberFormatException();
+            }            
+        } catch (Exception e) {
+            throw e;
+        }
     }
     
     private void caclulateEnergy() throws ArithmeticException{

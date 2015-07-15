@@ -64,7 +64,7 @@ public class FreeFallModelTest {
     public void testGetAltitude() {
         System.out.println("getAltitude");
         FreeFallModel instance = new FreeFallModel();
-        int expResult = 4000;
+        int expResult = 1000;
         int result = instance.getAltitude();
         assertEquals(expResult, result);
         //fail("The test case is a prototype.");

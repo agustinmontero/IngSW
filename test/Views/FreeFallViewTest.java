@@ -67,32 +67,19 @@ public class FreeFallViewTest {
         assertEquals(time, "14");
     }
     
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void badHighTest(){
         System.out.println("badHigh");
         int badHigh = -10;
         this.instance.freeFallAdapter.setBPM(badHigh);
-        this.instance.model.setAltitude(badHigh);
-        int h;
-        h = this.instance.freeFallAdapter.getBPM();
-        System.out.println(h + " - " + badHigh);
-        boolean test = true;
-        if(h == badHigh) test = false;
-        assertTrue(test);
+        this.instance.model.setAltitude(badHigh);        
     }
     
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void badMassTest(){
         System.out.println("badMassTest");
         double badMass = -2.5;
         this.instance.freeFallAdapter.setMass(badMass);
         this.instance.model.setMass(badMass);
-        
-        double m;
-        m = this.instance.model.getMass();
-        System.out.println(m + " " + badMass);
-        boolean test = true;
-        if(m == badMass) test = false;
-        assertTrue(test);
     }
 }
