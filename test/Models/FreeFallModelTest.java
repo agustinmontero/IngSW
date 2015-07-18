@@ -70,7 +70,7 @@ public class FreeFallModelTest {
         //fail("The test case is a prototype.");
     }
 
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void testSetAltitude() {
         System.out.println("setAltitude");
         int altitude = 6000;
@@ -79,7 +79,6 @@ public class FreeFallModelTest {
         assertEquals(instance.getAltitude(), altitude);
         int altitude2 = -20;
         instance.setAltitude(altitude2);
-        assertEquals(instance.getAltitude(), altitude);
     }
 
     @Test

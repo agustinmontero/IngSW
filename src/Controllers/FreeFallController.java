@@ -63,12 +63,11 @@ public class FreeFallController implements ControllerInterface{
 
     @Override
     public void setBPM(int bpm) {
-        if (bpm>0) {
+        try {
             model.setAltitude(bpm);
-        } else {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Invalid Data! Try again..", null, JOptionPane.ERROR_MESSAGE);
         }
-        
     }
     
     private void initalizeDJVAppSelector(){        
