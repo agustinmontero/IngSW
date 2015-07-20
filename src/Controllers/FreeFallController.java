@@ -23,9 +23,14 @@ public class FreeFallController implements ControllerInterface{
         view.enableStartMenuItem();
     }
 
+    /**
+     * Constructor utilizado en main de DJViewAppSelector
+     * @param model
+     * @param viewName Nombre de la vista
+     */
     public FreeFallController(FreeFallModelInterface model, String viewName) {
-        this.model = model;
-        if("DJViewAppSelector".equals(viewName)){
+        if ("DJViewAppSelector".equals(viewName)) {
+            this.model = model;
             this.initalizeDJVAppSelector();
         }
     }
@@ -33,7 +38,7 @@ public class FreeFallController implements ControllerInterface{
     public FreeFallController(FreeFallModelInterface model, ViewInterface view) {
         this.model = model;
         this.view = view;
-        this.initalizeControls();
+        this.updateControls();
     }
     
     
@@ -79,7 +84,7 @@ public class FreeFallController implements ControllerInterface{
         
     }
     
-    private void initalizeControls(){
+    private void updateControls(){
         this.view.disableStopMenuItem();
         this.view.enableStartMenuItem();
         this.model.initialize();

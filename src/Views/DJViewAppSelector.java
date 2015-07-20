@@ -53,7 +53,6 @@ public class DJViewAppSelector extends DJView{
         JPanel bpmPanel = new JPanel(new GridLayout(3, 1));
 		bpmPanel.add(beatBar);
         bpmPanel.add(bpmOutputLabel);
-        // DROP BOX DOWN?        
         bpmPanel.add(modelOption);
         viewPanel.add(bpmPanel);
         viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
