@@ -6,8 +6,8 @@ import Views.DJView;
 import Interfaces.ViewInterface;
 
 public class BeatController implements ControllerInterface {
-	BeatModelInterface model;
-	ViewInterface view;
+	private BeatModelInterface model;
+	private ViewInterface view;
    
 	public BeatController(BeatModelInterface model) {
             this.model = model;
@@ -56,7 +56,7 @@ public class BeatController implements ControllerInterface {
             this.model.initialize();
         }
         
-        public void initalizeView(){
+        private void initalizeView(){
             this.view.createView();
             this.view.createControls();
             this.view.disableStopMenuItem();

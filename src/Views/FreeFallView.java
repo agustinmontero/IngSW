@@ -13,7 +13,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     private int initialHigh;
     private double mass;
 
-    public FreeFallView() {
+    FreeFallView() {
         this.model = new FreeFallModel();
         this.freeFallAdapter = new FreeFallAdapter(model);
         initComponents();
@@ -24,16 +24,16 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
+        org.jdesktop.beansbinding.BindingGroup bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jPanel1 = new javax.swing.JPanel();
+        javax.swing.JProgressBar jProgressBar2 = new javax.swing.JProgressBar();
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         jTextFieldHigh = new javax.swing.JTextField();
-        jButtonSetHigh = new javax.swing.JButton();
-        jButtonStart = new javax.swing.JButton();
+        javax.swing.JButton jButtonSetHigh = new javax.swing.JButton();
+        javax.swing.JButton jButtonStart = new javax.swing.JButton();
         jTextFieldMass = new javax.swing.JTextField();
-        jButtonMass = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        javax.swing.JButton jButtonMass = new javax.swing.JButton();
+        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         highLabel = new javax.swing.JLabel();
         elapsedTimeLabel = new javax.swing.JLabel();
         jLabelGravity = new javax.swing.JLabel();
@@ -41,18 +41,18 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
         jLabelPotential = new javax.swing.JLabel();
         jLabelMass = new javax.swing.JLabel();
         jLabelTotalEn = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBarKinetic = new javax.swing.JProgressBar();
         jProgressBarPotencial = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuFile = new javax.swing.JMenu();
-        jMenuItemStart = new javax.swing.JMenuItem();
-        jMenuItemStop = new javax.swing.JMenuItem();
-        jMenuItemExit = new javax.swing.JMenuItem();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        javax.swing.JMenuBar jMenuBar1 = new javax.swing.JMenuBar();
+        javax.swing.JMenu jMenuFile = new javax.swing.JMenu();
+        javax.swing.JMenuItem jMenuItemStart = new javax.swing.JMenuItem();
+        javax.swing.JMenuItem jMenuItemStop = new javax.swing.JMenuItem();
+        javax.swing.JMenuItem jMenuItemExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,7 +106,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, jButtonSetHigh, jButtonStart);
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +124,7 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonSetHigh, jButtonStart});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, jButtonSetHigh, jButtonStart);
 
         highLabel.setText("Current High= [m]");
 
@@ -345,55 +345,29 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | javax.swing.UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException ex) {
             java.util.logging.Logger.getLogger(FreeFallView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FreeFallView().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new FreeFallView().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel elapsedTimeLabel;
     private javax.swing.JLabel highLabel;
-    private javax.swing.JButton jButtonMass;
-    private javax.swing.JButton jButtonSetHigh;
-    private javax.swing.JButton jButtonStart;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelGravity;
     private javax.swing.JLabel jLabelKinetic;
     private javax.swing.JLabel jLabelMass;
     private javax.swing.JLabel jLabelPotential;
     private javax.swing.JLabel jLabelTotalEn;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuFile;
-    private javax.swing.JMenuItem jMenuItemExit;
-    private javax.swing.JMenuItem jMenuItemStart;
-    private javax.swing.JMenuItem jMenuItemStop;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JProgressBar jProgressBarKinetic;
     private javax.swing.JProgressBar jProgressBarPotencial;
     private javax.swing.JTextField jTextFieldHigh;
     private javax.swing.JTextField jTextFieldMass;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -412,35 +386,27 @@ public class FreeFallView extends javax.swing.JFrame implements BPMObserver, Bea
     public void updateBeat() {
         try {
             int altitude = model.getAltitude();
-            int percentAlt = (int) ((altitude * 100) / initialHigh);
+            int percentAlt = ((altitude * 100) / initialHigh);
             jProgressBar1.setValue(percentAlt);
 
             if (this.mass != 0) {
-                int kineticEn = (int) model.getKineticEn();
-                int percentKin = (int) ((kineticEn * 100) / model.getTotalEnergy());
+                int kineticEn = model.getKineticEn();
+                int percentKin = ((kineticEn * 100) / model.getTotalEnergy());
                 jProgressBarKinetic.setValue(percentKin);
 
-                int potencialEn = (int) model.getPotencialEn();
-                int percentPot = (int) ((potencialEn * 100) / model.getTotalEnergy());
+                int potencialEn = model.getPotencialEn();
+                int percentPot = ((potencialEn * 100) / model.getTotalEnergy());
                 jProgressBarPotencial.setValue(percentPot);
             }
         } catch (ArithmeticException e) {
         }
     }
 
-    public int getInitialHigh() {
-        return initialHigh;
-    }
-
-    public void setInitialHigh(int initialHigh) {
+    void setInitialHigh(int initialHigh) {
         this.initialHigh = initialHigh;
     }
 
-    public double getMass() {
-        return mass;
-    }
-
-    public void setMass(double mass) {
+    void setMass(double mass) {
         this.mass = mass;
     }
 

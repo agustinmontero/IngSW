@@ -11,12 +11,11 @@ import static org.junit.Assert.*;
 
 public class FreeFallViewTest {
     
-    FreeFallView instance;
-    final int HIGH;
-    final double MASS;
-    final double GRAV;
-    Thread thread;
-    
+    private FreeFallView instance;
+    private final int HIGH;
+    private final double MASS;
+    private final double GRAV;
+
     public FreeFallViewTest() {
         this.HIGH = 950;
         this.MASS = 2.3;
@@ -47,7 +46,7 @@ public class FreeFallViewTest {
 
     @Test
     public void testMain() {
-        thread = new Thread();
+        Thread thread = new Thread();
         System.out.println("main");
         String[] args = null;
         this.instance.main(args);

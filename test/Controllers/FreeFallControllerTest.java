@@ -8,14 +8,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
 /**
  *
  * @author Agustin
  */
 public class FreeFallControllerTest {
     
-    FreeFallModel model;
-    FreeFallController instance;
+    private FreeFallModel model;
+    private FreeFallController instance;
     
     public FreeFallControllerTest() {
         model = new FreeFallModel();

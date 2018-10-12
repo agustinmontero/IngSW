@@ -8,7 +8,7 @@ import Interfaces.FreeFallModelInterface;
 
 public class FreeFallAdapter implements BeatModelInterface{
     
-    FreeFallModelInterface freeFall;
+    private FreeFallModelInterface freeFall;
 
     public FreeFallAdapter(FreeFallModelInterface freeFall) {
         this.freeFall = freeFall;

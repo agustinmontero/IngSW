@@ -8,8 +8,8 @@ import Interfaces.ViewInterface;
 import Models.HeartModel;
 
 public class HeartController implements ControllerInterface {
-	HeartModelInterface model;
-	ViewInterface view;
+	private HeartModelInterface model;
+	private ViewInterface view;
         
 	public HeartController(HeartModelInterface model) {
 		this.model = model;

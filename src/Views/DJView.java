@@ -17,17 +17,12 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
     JPanel viewPanel;
     BeatBar beatBar;
     JLabel bpmOutputLabel;
-    JFrame controlFrame;
-    JPanel controlPanel;
-    JLabel bpmLabel;
-    JTextField bpmTextField;
-    JButton setBPMButton;
-    JButton increaseBPMButton;
-    JButton decreaseBPMButton;
-    JMenuBar menuBar;
-    JMenu menu;
-    JMenuItem startMenuItem;
-    JMenuItem stopMenuItem;
+    private JTextField bpmTextField;
+    private JButton setBPMButton;
+    private JButton increaseBPMButton;
+    private JButton decreaseBPMButton;
+    private JMenuItem startMenuItem;
+    private JMenuItem stopMenuItem;
     
     
 
@@ -63,15 +58,15 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
     public void createControls() {
 		// Create all Swing components here
         JFrame.setDefaultLookAndFeelDecorated(true);
-        
-        controlFrame = new JFrame("Control");
+
+        JFrame controlFrame = new JFrame("Control");
         controlFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controlFrame.setSize(new Dimension(100, 80));
 
-        controlPanel = new JPanel(new GridLayout(1, 2));
+        JPanel controlPanel = new JPanel(new GridLayout(1, 2));
 
-        menuBar = new JMenuBar();
-        menu = new JMenu("DJ Control");
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("DJ Control");
         startMenuItem = new JMenuItem("Start");
         menu.add(startMenuItem);
         startMenuItem.addActionListener(new ActionListener() {
@@ -98,7 +93,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
         controlFrame.setJMenuBar(menuBar);
 
         bpmTextField = new JTextField(2);
-        bpmLabel = new JLabel("Enter BPM:", SwingConstants.RIGHT);
+        JLabel bpmLabel = new JLabel("Enter BPM:", SwingConstants.RIGHT);
         setBPMButton = new JButton("Set");
         setBPMButton.setSize(new Dimension(10,40));
         increaseBPMButton = new JButton(">>");
@@ -163,8 +158,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
 		}
     }
 
-    @Override
-	public void updateBPM() {
+    public void updateBPM() {
 		if (model != null) {
 			int bpm = model.getBPM();
 			if (bpm == 0) {
@@ -179,8 +173,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver, ViewI
 		}
 	}
   
-    @Override
-	public void updateBeat() {
+    public void updateBeat() {
 		if (beatBar != null) {
 			 beatBar.setValue(100);
 		}

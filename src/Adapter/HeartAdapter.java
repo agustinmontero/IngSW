@@ -6,7 +6,7 @@ import Observers.BPMObserver;
 import Observers.BeatObserver;
 
 public class HeartAdapter implements BeatModelInterface {
-	HeartModelInterface heart;
+	private HeartModelInterface heart;
  
 	public HeartAdapter(HeartModelInterface heart) {
 		this.heart = heart;

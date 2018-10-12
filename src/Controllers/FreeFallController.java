@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
 
 public class FreeFallController implements ControllerInterface{
     
-    FreeFallModelInterface model;
-    ViewInterface view;
+    private FreeFallModelInterface model;
+    private ViewInterface view;
 
     public FreeFallController(FreeFallModelInterface model) {
         this.model = model;        

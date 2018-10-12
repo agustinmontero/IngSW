@@ -1,15 +1,11 @@
 package Views;
-  
-import java.awt.*;
-import java.awt.event.*;
+
 import javax.swing.*;
 
-public class BeatBar extends JProgressBar implements Runnable { 
-    JProgressBar progressBar;
-	Thread thread;
+public class BeatBar extends JProgressBar implements Runnable {
 
-	public BeatBar() {
-		thread = new Thread(this);
+	BeatBar() {
+		Thread thread = new Thread(this);
 		setMaximum(100);
 		thread.start();
 	}

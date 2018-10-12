@@ -6,17 +6,16 @@ import Observers.BeatObserver;
 import Interfaces.HeartModelInterface;
 
 public class HeartModel implements HeartModelInterface, Runnable {
-	ArrayList beatObservers = new ArrayList();
-	ArrayList bpmObservers = new ArrayList();
-	int time = 1000;
+	private ArrayList beatObservers = new ArrayList();
+	private ArrayList bpmObservers = new ArrayList();
+	private int time = 1000;
         int bpm = 90;
-	Random random = new Random(System.currentTimeMillis());
-	Thread thread;
-        private static HeartModel uniqueInstance;
+	private Random random = new Random(System.currentTimeMillis());
+	private static HeartModel uniqueInstance;
         private static int tryInstance;
 
 	private HeartModel() {
-		thread = new Thread(this);
+		Thread thread = new Thread(this);
 		thread.start();
                 tryInstance=0;//Contador de intentos de craciones de nuevas instancias de HartModel
 	}
@@ -68,9 +67,9 @@ public class HeartModel implements HeartModelInterface, Runnable {
 		}
 	}
 
-	public void notifyBeatObservers() {
-		for(int i = 0; i < beatObservers.size(); i++) {
-			BeatObserver observer = (BeatObserver)beatObservers.get(i);
+	private void notifyBeatObservers() {
+		for (Object beatObserver : beatObservers) {
+			BeatObserver observer = (BeatObserver) beatObserver;
 			observer.updateBeat();
 		}
 	}
@@ -86,9 +85,9 @@ public class HeartModel implements HeartModelInterface, Runnable {
 		}
 	}
 
-	public void notifyBPMObservers() {
-		for(int i = 0; i < bpmObservers.size(); i++) {
-			BPMObserver observer = (BPMObserver)bpmObservers.get(i);
+	private void notifyBPMObservers() {
+		for (Object bpmObserver : bpmObservers) {
+			BPMObserver observer = (BPMObserver) bpmObserver;
 			observer.updateBPM();
 		}
 	}

@@ -10,8 +10,8 @@ import Interfaces.FreeFallModelInterface;
 
 public class FreeFallModel implements FreeFallModelInterface, Runnable{
     
-    ArrayList beatObserver;
-    ArrayList bpmObserver;
+    private ArrayList beatObserver;
+    private ArrayList bpmObserver;
     private final int GROUND;
     private final long TIME_INTERVAL;    
     private final double GRAVITY;
@@ -20,12 +20,12 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     private int potentialEn;
     private int totalEnergy;
     private double velocity;
-    double seconds;
-    long startTimeMillis;
-    long endTimeMillis;
+    private double seconds;
+    private long startTimeMillis;
+    private long endTimeMillis;
     private int altitude;
     private int initialHigh;
-    Thread thread;
+    private Thread thread;
 
     public FreeFallModel() {
         this.GROUND = 0;
@@ -66,8 +66,8 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     @Override
     public void run() {        
         seconds = 0;
-        int current_altitude = getAltitude();
-        double vel = 0;
+        int current_altitude;
+        double vel;
         startTimeMillis = System.currentTimeMillis();
         totalEnergy = (int) (this.mass*this.GRAVITY*this.initialHigh);
         while (getAltitude()>GROUND) {
@@ -123,9 +123,9 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     }
     
     
-    public void notifyBeatObserver(){
-        for (int i = 0; i < beatObserver.size(); i++) {
-            BeatObserver observer = (BeatObserver)beatObserver.get(i);
+    private void notifyBeatObserver(){
+        for (Object aBeatObserver : beatObserver) {
+            BeatObserver observer = (BeatObserver) aBeatObserver;
             observer.updateBeat();
         }
     }
@@ -142,10 +142,10 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
             bpmObserver.remove(o);
     }
     
-    public void notifyBPMObserver(){
-        for (int i = 0; i < bpmObserver.size(); i++) {
-            BPMObserver observer = (BPMObserver)bpmObserver.get(i);
-            observer.updateBPM();            
+    private void notifyBPMObserver(){
+        for (Object aBpmObserver : bpmObserver) {
+            BPMObserver observer = (BPMObserver) aBpmObserver;
+            observer.updateBPM();
         }
     }
 
@@ -167,10 +167,10 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
     }
 
     public int getPotencialEn() {
-        return (int) potentialEn;
+        return potentialEn;
     }
 
-    public double getVelocity() {
+    private double getVelocity() {
         return velocity;
     }
 
@@ -178,7 +178,7 @@ public class FreeFallModel implements FreeFallModelInterface, Runnable{
         return totalEnergy;
     }
     
-    public void setVelocity(double velocity) {
+    private void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 

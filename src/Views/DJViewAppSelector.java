@@ -26,10 +26,8 @@ import Adapter.HeartAdapter;
 
 
 public class DJViewAppSelector extends DJView{
-    
-    //Dropdown Box
-    String[] modelList;
-    JComboBox modelOption;
+
+    private JComboBox modelOption;
     private final DJViewAppSelector viewAppSelector = this;
 
     public DJViewAppSelector(ControllerInterface controller, BeatModelInterface model) {
@@ -40,7 +38,8 @@ public class DJViewAppSelector extends DJView{
 
     @Override
     public void createView() {
-        this.modelList = new String[]{"HeartModel", "DJModel", "FreeFallModel"};
+        //Dropdown Box
+        String[] modelList = new String[]{"HeartModel", "DJModel", "FreeFallModel"};
         this.modelOption = new JComboBox(modelList);
 		// Create all Swing components here
         viewPanel = new JPanel(new GridLayout(1, 2));
@@ -95,7 +94,7 @@ public class DJViewAppSelector extends DJView{
         });
     }
     
-    public void updateModel(BeatModelInterface model){
+    private void updateModel(BeatModelInterface model){
         this.model.removeObserver((BeatObserver)this);
         this.model.removeObserver((BPMObserver)this);
         this.model = model;
@@ -103,7 +102,7 @@ public class DJViewAppSelector extends DJView{
         this.model.registerObserver((BPMObserver)this);
     }
     
-    public void updateController(ControllerInterface controller){
+    private void updateController(ControllerInterface controller){
         this.controller = controller;
     }
     

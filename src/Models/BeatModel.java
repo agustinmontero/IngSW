@@ -7,12 +7,12 @@ import Interfaces.BeatModelInterface;
 import Observers.BeatObserver;
 
 public class BeatModel implements BeatModelInterface, MetaEventListener {
-    Sequencer sequencer;
-    ArrayList beatObservers = new ArrayList();
-    ArrayList bpmObservers = new ArrayList();
-    int bpm = 90;
-    Sequence sequence;
-    Track track;
+    private Sequencer sequencer;
+    private ArrayList beatObservers = new ArrayList();
+    private ArrayList bpmObservers = new ArrayList();
+    private int bpm = 90;
+    private Sequence sequence;
+    private Track track;
     //private static BeatModel uniqueInstance = null;
 
     public BeatModel() {
@@ -58,7 +58,7 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		return bpm;
 	}
   
-	void beatEvent() {
+	private void beatEvent() {
 		notifyBeatObservers();
 	}
   
@@ -67,9 +67,9 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		beatObservers.add(o);
 	}
   
-	public void notifyBeatObservers() {
-		for(int i = 0; i < beatObservers.size(); i++) {
-			BeatObserver observer = (BeatObserver)beatObservers.get(i);
+	private void notifyBeatObservers() {
+		for (Object beatObserver : beatObservers) {
+			BeatObserver observer = (BeatObserver) beatObserver;
 			observer.updateBeat();
 		}
 	}
@@ -78,9 +78,9 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		bpmObservers.add(o);
 	}
   
-	public void notifyBPMObservers() {
-		for(int i = 0; i < bpmObservers.size(); i++) {
-			BPMObserver observer = (BPMObserver)bpmObservers.get(i);
+	private void notifyBPMObservers() {
+		for (Object bpmObserver : bpmObservers) {
+			BPMObserver observer = (BPMObserver) bpmObserver;
 			observer.updateBPM();
 		}
 	}
@@ -120,7 +120,7 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
         }
     }
 
-	public void setUpMidi() {
+	private void setUpMidi() {
 		try {
 			sequencer = MidiSystem.getSequencer();
 			sequencer.open();
@@ -137,14 +137,14 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		}
     } 
 
-     public void buildTrackAndStart() {
+     private void buildTrackAndStart() {
         int[] trackList = {35, 0, 46, 0};
     
         sequence.deleteTrack(null);
         track = sequence.createTrack();
 
       	makeTracks(trackList);
-		track.add(makeEvent(192,9,1,0,4));      
+		track.add(makeEvent(192, 1,0,4));
 	 	try {
 			sequencer.setSequence(sequence);                    
 		} catch(Exception e) {
@@ -152,23 +152,23 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		}
     } 
             
-    public void makeTracks(int[] list) {        
+    private void makeTracks(int[] list) {
        
        for (int i = 0; i < list.length; i++) {
           int key = list[i];
 
           if (key != 0) {
-             track.add(makeEvent(144,9,key, 100, i));
-             track.add(makeEvent(128,9,key, 100, i+1));
+             track.add(makeEvent(144, key, 100, i));
+             track.add(makeEvent(128, key, 100, i+1));
           }
        }
     }
         
-    public  MidiEvent makeEvent(int comd, int chan, int one, int two, int tick) {
+    private MidiEvent makeEvent(int comd, int one, int two, int tick) {
         MidiEvent event = null;
         try {
             ShortMessage a = new ShortMessage();
-            a.setMessage(comd, chan, one, two);
+            a.setMessage(comd, 9, one, two);
             event = new MidiEvent(a, tick);
             
         } catch(Exception e) {
